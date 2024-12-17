@@ -1,0 +1,60 @@
+import java.util.ArrayList;
+import java.util.Collections;
+import java.util.List;
+
+class Bank {
+    // Attributes
+    private String bankName;
+    private String bankAddress;
+    private String IFSCCode;
+    private List<Customer> customers;
+
+    // Constructor
+    public Bank(String bankName, String bankAddress, String IFSCCode) {
+        this.bankName = bankName;
+        this.bankAddress = bankAddress;
+        this.IFSCCode = IFSCCode;
+        this.customers = new ArrayList<>();
+    }
+
+    // Method to create a new customer account
+    public void createCustomer(String customerName, String customerAddress, String accountType) {
+        int customerID = customers.size() + 1;
+        Customer newCustomer = new Customer(customerID, customerName, customerAddress, accountType);
+        customers.add(newCustomer);
+        System.out.println("Customer account created successfully. ID: " + customerID);
+    }
+
+    // Method to search for a customer account (Binary Search for O(log n))
+    public Customer searchCustomer(int customerID) {
+        Collections.sort(customers); // Sorting customers by ID
+        int left = 0, right = customers.size() - 1;
+
+        while (left <= right) {
+            int mid = left + (right - left) / 2;
+            if (customers.get(mid).getCustomerID() == customerID) {
+                return customers.get(mid);
+            }
+            if (customers.get(mid).getCustomerID() < customerID)
+                left = mid + 1;
+            else
+                right = mid - 1;
+        }
+        return null; // Not found
+    }
+
+    // Method to display all customer accounts
+    public void displayAllCustomers() {
+        System.out.println("Customer Accounts in " + bankName + ":");
+        for (Customer customer : customers) {
+            customer.displayAccountDetails();
+        }
+    }
+
+    // Method to display bank details
+    public void displayBankDetails() {
+        System.out.println("Bank Name: " + bankName);
+        System.out.println("Bank Address: " + bankAddress);
+        System.out.println("Bank IFSC Code: " + IFSCCode);
+    }
+}
