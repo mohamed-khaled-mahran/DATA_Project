@@ -7,7 +7,7 @@ import java.io.*;
 import java.util.*;
 
 
-public class Customer implements Comparable<Customer> {
+public class Customer implements Comparable<Customer> , Serializable {
     
     //3alashan AccountType has two options only
     public enum AccountType {
