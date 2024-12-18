@@ -4,13 +4,14 @@
  */
 package com.mycompany.bank;
 
+import java.io.*;
 import java.util.*;
 
 /**
  *
  * @author mahran
  */
-public class transaction {
+public class transaction implements Serializable{
     private static int count= 0;
     public int ID ;
     public String type;
