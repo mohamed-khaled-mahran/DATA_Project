@@ -5,12 +5,12 @@
 package com.mycompany.bank;
 
 import java.util.*;
-
+import java.io.*;
 /**
  *
  * @author mahran
  */
-public class Bank {
+public class Bank implements Serializable{
     
     public String name;
     public String address;
